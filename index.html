@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/base/style.css">
+  <title>JetUp</title>
+</head>
+<body>
+  <img src="./assets/img/bg/Blob.svg" class="blob" alt="animação">
+
+  <header>
+    <img src="./assets/img/icon/logo.png" alt="Logo JetUp">
+  </header>
+
+  <main>
+    <div class="registration-container">
+      <h2 class="registration-title">Cadastre-se para o Lançamento</h2>
+      <p class="registration-description">Seja um dos primeiros a acessar nossa plataforma assim que for lançada!</p>
+  
+      <form class="registration-form">
+        <div>
+          <input type="text" class="input-field" placeholder="Nome" minlength="5" >
+          <p class="error-message">Mensagem de erro</p>
+        </div>
+        <div>
+          <input type="email" class="input-field" placeholder="Email" minlength="5" >
+          <p class="error-message">Mensagem de erro</p>
+        </div>
+        <div>
+          <input type="tel" class="input-field" placeholder="Telefone" maxlength="15"  pattern="\(\d{2}\) \d{4,5}-\d{4}">
+          <p class="error-message">Mensagem de erro</p>
+        </div>
+        <button class="submit-button">Cadastre-se</button>
+      </form>
+    </div>
+
+    <div class="success-container">
+      <img src="./assets/img/icon/check.svg" alt="ícone de check" class="success-icon">
+    
+      <h3 class="success-title">Cadastro realizado com sucesso!</h3>
+      <p class="success-message">
+        Obrigado por se cadastrar! Você agora está na nossa lista de usuários prioritários e será um dos primeiros a saber quando nossa plataforma for lançada.
+      </p>
+    </div>    
+  </main>
+
+  <footer>
+    <p class="reservation">©2024 JetUp - Todos os direitos reservados</p>
+  </footer>
+
+  <img src="./assets/img/bg/wave.svg" class="wave" alt="animação">
+  <script type="module" src="./assets/js/formValidator.js"></script>
+  <script type="module" src="./assets/js/phoneFormatter.js"></script>
+</body>
+</html>

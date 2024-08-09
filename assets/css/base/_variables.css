@@ -1,0 +1,17 @@
+@import url(../../font/stylesheet.css);
+
+:root {
+  /* Cores */
+  --white: #ffffff;
+  --black: #000000;
+  --eerie-black: #121416;
+  --dark-gray: #48494A;
+  --light-aqua: #B4DADA;
+  --slate-gray: #5A6D6D;
+  --red-apple: #be3c3c;
+
+
+  /* Fontes */
+  --gilroy: 'Gilroy', sans-serif;
+  --transition: all .3s ease-in-out;
+}
