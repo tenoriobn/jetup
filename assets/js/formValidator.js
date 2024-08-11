@@ -42,34 +42,72 @@ document.querySelector('.registration-form').addEventListener('submit', function
   );
 
   if (isFormValid) {
-    transitionContainers();
+    const formData = getFormData();
+    sendToActiveCampaign(formData);
   }
 });
 
+// Função para capturar os valores do formulário
+function getFormData() {
+  const name = document.querySelector('input[type="text"]').value.trim();
+  const email = document.querySelector('input[type="email"]').value.trim();
+  const phone = document.querySelector('input[type="tel"]').value.trim();
 
+  return { name, email, phone };
+}
 
-// Função para realizar a transição entre dois containers
+// Função para enviar os dados para o Active Campaign
+function sendToActiveCampaign(data) {
+  console.log('sendToActiveCampaign data:', data)
+  console.log('sendToActiveCampaign infos:', data.name, data.email, data.phone)
+
+  fetch('https://jetup86367.api-us1.com/api/3/contacts', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Api-Token': 'd7bc737431c35801b87fc382d513d4945a1a6927a80b13ba4a3a67c4feffa66aaf7a9bbb'
+    },
+    body: JSON.stringify({
+      contact: {
+        firstName: data.name,
+        email: data.email,
+        phone: data.phone
+      }
+    })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Erro na resposta do servidor');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Success:', data);
+    transitionContainers();
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+// Função para realizar a transição os containers
 function transitionContainers() {
   const registrationContainer = document.querySelector('.registration-container');
   const successContainer = document.querySelector('.success-container');
 
-  // Definir o estilo inicial dos containers
   registrationContainer.style.transition = 'opacity .3s ease-in-out';
   successContainer.style.transition = 'opacity .3s ease-in-out';
 
-  // Iniciar a transição para tornar o container de registro invisível
   registrationContainer.style.opacity = '0';
 
-  // Usar setTimeout para aguardar a transição e alterar o display
   setTimeout(() => {
     registrationContainer.style.display = 'none';
     successContainer.style.display = 'flex';
-    successContainer.style.opacity = '0'; // Inicialmente invisível
+    successContainer.style.opacity = '0';
 
-    // Iniciar a transição para tornar o container de sucesso visível
     setTimeout(() => {
       successContainer.style.transition = 'opacity .4s ease-in-out';
       successContainer.style.opacity = '1';
-    }, 50); // Pequeno atraso para garantir que o display seja aplicado antes da transição de opacidade
-  }, 300); // Tempo de transição do container de registro
+    }, 50);
+  }, 300);
 }
