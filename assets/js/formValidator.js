@@ -60,34 +60,35 @@ function getFormData() {
 function sendToActiveCampaign(data) {
   console.log('sendToActiveCampaign data:', data)
   console.log('sendToActiveCampaign infos:', data.name, data.email, data.phone)
+  transitionContainers();
 
-  fetch('https://jetup86367.api-us1.com/api/3/contacts', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Api-Token': 'd7bc737431c35801b87fc382d513d4945a1a6927a80b13ba4a3a67c4feffa66aaf7a9bbb'
-    },
-    body: JSON.stringify({
-      contact: {
-        firstName: data.name,
-        email: data.email,
-        phone: data.phone
-      }
-    })
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Erro na resposta do servidor');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Success:', data);
-    transitionContainers();
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
+  // fetch('https://jetup86367.api-us1.com/api/3/contacts', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'Api-Token': 'd7bc737431c35801b87fc382d513d4945a1a6927a80b13ba4a3a67c4feffa66aaf7a9bbb'
+  //   },
+  //   body: JSON.stringify({
+  //     contact: {
+  //       firstName: data.name,
+  //       email: data.email,
+  //       phone: data.phone
+  //     }
+  //   })
+  // })
+  // .then(response => {
+  //   if (!response.ok) {
+  //     throw new Error('Erro na resposta do servidor');
+  //   }
+  //   return response.json();
+  // })
+  // .then(data => {
+  //   console.log('Success:', data);
+  //   transitionContainers();
+  // })
+  // .catch(error => {
+  //   console.error('Error:', error);
+  // });
 }
 
 // Função para realizar a transição os containers
